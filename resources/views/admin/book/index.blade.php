@@ -5,7 +5,7 @@
 @section('content')
 <h1>Ini halaman Books</h1>
 <div class="my-4 d-flex justify-content-end">
-    <a href="/book-add" class="btn btn-info">Add Category</a>
+    <a href="/book-add" class="btn btn-primary">Add Book</a>
 </div>
     @if(session('status'))
         <div class="alert alert-success">
@@ -20,6 +20,7 @@
                 <th>Book Code</th>
                 <th>Title</th>
                 <th>Cover</th>
+                <th>Category</th>
                 <th>Status</th>
                 <th>Action</th>
             </tr>
@@ -30,10 +31,21 @@
                 <td>{{$loop->iteration}}</td>
                 <td>{{$value->book_code}}</td>
                 <td>{{$value->title}}</td>
-                <td>{{$value->cover}}</td>
+                <td>
+                    @if($value->cover != '')
+                    <img src="{{asset('storage/cover/'.$value->cover)}}" alt="" width="75px" height="85 px">
+                    @else
+                    <img src="{{asset('assets/img/notfound.jpg')}}" alt="" width="75px">
+                    @endif
+                </td>
+                <td>
+                    @foreach($value->categories as $category)
+                    {{$category->name}},
+                    @endforeach
+                </td>
                 <td>{{$value->status}}</td>
                 <td>
-                    <a href="#" class= "btn btn-primary"> Edit</a>
+                    <a href="/book-edit/{{$value->slug}}" class= "btn btn-primary"> Edit</a>
                     <a href="#" class= "btn btn-danger"> Delete</a>
                 </td>
             </tr>

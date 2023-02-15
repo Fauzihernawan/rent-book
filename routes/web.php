@@ -38,8 +38,10 @@ Route::middleware('auth')->group(function(){
     Route::get('category-delete/{slug}',[AdminController::class, 'categoryDestroy'])->middleware('only_admin');
     Route::get('users',[AdminController::class, 'users'])->middleware('only_admin');
     Route::get('book',[AdminController::class, 'books'])->middleware('only_admin');
-    Route::get('book-add',[AdminController::class, 'booksAdd']);
-    Route::post('book-add',[AdminController::class, 'booksStore']);
+    Route::get('book-add',[AdminController::class, 'booksAdd'])->middleware('only_admin');
+    Route::post('book-add',[AdminController::class, 'booksStore'])->middleware('only_admin');
+    Route::get('book-edit/{slug}',[AdminController::class, 'bookEdit'])->middleware('only_admin');
+    Route::put('book-edit/{slug}',[AdminController::class, 'bookUpdate'])->middleware('only_admin');
     Route::get('rentlogs',[AdminController::class, 'rentlogs'])->middleware('only_admin');
     Route::get('logout', [AuthController::class, 'logout']);
 });

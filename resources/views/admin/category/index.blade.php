@@ -5,7 +5,7 @@
 @section('content')
 <h1>Category List</h1>
 <div class="my-4 d-flex justify-content-end">
-    <a href="/category-add" class="btn btn-info">Add Category</a>
+    <a href="/category-add" class="btn btn-primary">Add Category</a>
 </div>
     @if(session('status'))
         <div class="alert alert-success">

@@ -19,8 +19,50 @@ class AdminController extends Controller
     public function categorys()
     {
        $category = Category::all();
-       return view('admin.category',['category' => $category]);
+       return view('admin.category.index',['category' => $category]);
     }
+    public function categoryAdd()
+    {
+      return view('admin.category.add');
+    }
+
+    public function categoryStore(Request $request)
+    {
+      // 
+      $validated = $request->validate([
+         'name' => 'required|unique:categories',
+     ]);
+
+      // memaksukan data ke database
+      $category = Category::create($request->all());
+      return redirect('category')->with('status', 'Category Added Successfully');
+    }
+
+    public function categoryEdit($slug)
+    {
+      $category = Category::where('slug', $slug)->first();
+      return view('admin.category.edit', ['category' => $category]);
+    }
+    
+    public function categoryUpdate(Request $request, $slug)
+    {
+         // 
+         $validated = $request->validate([
+            'name' => 'required|unique:categories',
+      ]);
+      $category = Category::where('slug', $slug)->first();
+      $category->slug = null;
+      $category->update($request->all());
+      return redirect('category')->with('status', 'Category Updated Successfully');
+    }
+
+    public function categoryDestroy($slug)
+    {
+      $category = Category::where('slug', $slug)->first();
+      $category->delete();
+      return redirect('category')->with('status', 'Category Deleted Successfully');
+    }
+
     public function users()
     {
        return view('admin.user');
@@ -30,14 +72,14 @@ class AdminController extends Controller
     public function books()
     {
        $book = Book::all();
-       return view('admin.book', ['book' => $book]);
+       return view('admin.book.index', ['book' => $book]);
 
     }
 
     public function booksAdd()
     {
       $categories = Category::all();
-      return view('admin.book-add',['categories' => $categories]);
+      return view('admin.book.add',['categories' => $categories]);
     }
 
     public function booksStore(Request $request)
@@ -59,52 +101,34 @@ class AdminController extends Controller
          $book->categories()->sync($request->categories);
          return redirect('book')->with('status', 'Book Added Successfully');
     }
+    public function bookEdit($slug)
+         {
+            $books= Book::where('slug', $slug)->first();
+            $categories = Category::all();
+            return view('admin.book.edit', ['books' => $books, 'categories' => $categories]);
+         }
+   public function bookUpdate(Request $request, $slug)
+         {
+            if($request->file('image')){
+               $extension = $request->file('image')->getClientOriginalExtension();
+               $newName = $request->title.'-'.now()->timestamp.'.'.$extension;
+               $request->file('image')->storeAs('cover',$newName);
+               $request['cover'] = $newName;
+            }  
+
+            $book = Book::where('slug', $slug)->first();
+            $book->update($request->all());
+            if($request->categories){
+               $book->categories()->sync($request->categories);
+            }
+            return redirect('book')->with('status', 'Book Updated Successfully');
+
+         }
 
     public function rentlogs()
     {
        return view('admin.rentlog');
     }
 
-    public function categoryAdd()
-    {
-      return view('admin.categoryadd');
-    }
-
-    public function categoryStore(Request $request)
-    {
-      // 
-      $validated = $request->validate([
-         'name' => 'required|unique:categories',
-     ]);
-
-      // memaksukan data ke database
-      $category = Category::create($request->all());
-      return redirect('category')->with('status', 'Category Added Successfully');
-    }
-
-    public function categoryEdit($slug)
-    {
-      $category = Category::where('slug', $slug)->first();
-      return view('admin.category-edit', ['category' => $category]);
-    }
-    
-    public function categoryUpdate(Request $request, $slug)
-    {
-         // 
-         $validated = $request->validate([
-            'name' => 'required|unique:categories',
-      ]);
-      $category = Category::where('slug', $slug)->first();
-      $category->slug = null;
-      $category->update($request->all());
-      return redirect('category')->with('status', 'Category Updated Successfully');
-    }
-
-    public function categoryDestroy($slug)
-    {
-      $category = Category::where('slug', $slug)->first();
-      $category->delete();
-      return redirect('category')->with('status', 'Category Deleted Successfully');
-    }
 
 }

@@ -20,14 +20,14 @@
    <input type="book_code" name="book_code" id="book_code" class="w-50 form-control" placeholder="Book code">
    <label for="title" class="mb-2 mt-3 form-label">Title</label>
    <input type="title" name="title" id="title" class="w-50 form-control" placeholder="Title">
-   <input type="file" name="image" id="image" class="mt-4 w-50 form-control">
-   <label for="categories" class="mb-2 mt-3 form-label">Category</label>
-   <select name="categories[]" id="categories" class="form-control w-75 select" multiple="multiple">
+   <input type="file" name="image" id="image" class="mt-4 mb-2 w-50 form-control">
+   <label for="categories" class=" form-label">Category</label> <br>
+   <select name="categories[]" id="categories" class="w-50 form-control select" multiple="multiple">
             @foreach($categories as $item)
             <option value="{{$item->id}}">{{$item->name}}</option>
             @endforeach
    </select>
-   <button type="submit" class="mt-3 btn btn-success">Save</button>
+   <button type="submit" class="btn btn-success">Save</button>
 </form>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>

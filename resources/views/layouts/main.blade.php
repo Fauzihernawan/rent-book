@@ -188,14 +188,15 @@
             <a href="/category" @if(request()->route()->uri == 'category') class= 'active' @endif><i class="bi bi-bookmarks"></i> Category</a>
             <a href="/book" @if(request()->route()->uri == 'books') class= 'active' @endif><i class="bi bi-book-half"></i> Books</a>
             <a href="/rentlogs" @if(request()->route()->uri == 'rentlogs') class= 'active' @endif><i class="bi bi-cart-plus"></i> RentLogs</a>
-            <a href="/logout" class="mb-2 position-absolute bottom-0 start-0 bi bi-box-arrow-left"> Logout</a>
+            <a href="/logout" class="mb-2 bi bi-box-arrow-left"> Logout</a>
             @else
             <a href="/#" @if(request()->route()->uri == 'profile') class= 'active' @endif><i class="bi bi-person"></i> Profile</a>
-            <a href="/logout" class="position-absolute bottom-0 start-0 bi bi-box-arrow-left"> Logout</a>
+            <a href="/logout" class=" bi bi-box-arrow-left"> Logout</a>
             @endif
         </div>
         <!-- <div class="main-content">
              <div id="menu-button">
+                position-absolute bottom-0
                 <input type="checkbox" id="menu-checkbox">
                 <label for="menu-checxbox" id="menu-label">
                     <div id="checkbox"></div>
