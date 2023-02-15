@@ -46,7 +46,8 @@
                 <td>{{$value->status}}</td>
                 <td>
                     <a href="/book-edit/{{$value->slug}}" class= "btn btn-primary"> Edit</a>
-                    <a href="#" class= "btn btn-danger"> Delete</a>
+                    @method('DELETE')
+                    <a href="/book-delete/{{$value->slug}}" class= "btn btn-danger"> Delete</a>
                 </td>
             </tr>
             @endforeach
