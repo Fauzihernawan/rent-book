@@ -4,7 +4,7 @@
 
 @section('content')
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-<h1>Add Book</h1>
+<h1>Add Books</h1>
 @if ($errors->any())
         <div class=" alert alert-danger w-50">
             <ul>
@@ -21,7 +21,7 @@
    <label for="title" class="mb-2 mt-3 form-label">Title</label>
    <input type="title" name="title" id="title" class="w-50 form-control" placeholder="Title">
    <input type="file" name="image" id="image" class="mt-4 mb-2 w-50 form-control">
-   <label for="categories" class=" form-label">Category</label> <br>
+   <label for="categories" class="form-label">Category</label> <br>
    <select name="categories[]" id="categories" class="w-50 form-control select" multiple="multiple">
             @foreach($categories as $item)
             <option value="{{$item->id}}">{{$item->name}}</option>

@@ -4,7 +4,7 @@
 
 @section('content')
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-<h1>Edit Book</h1>
+<h1>Edit Books</h1>
 @if ($errors->any())
         <div class=" alert alert-danger w-50">
             <ul>

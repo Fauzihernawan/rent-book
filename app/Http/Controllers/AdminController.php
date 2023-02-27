@@ -104,7 +104,7 @@ class AdminController extends Controller
          if($request->categories){
          $book->categories()->sync($request->categories);
          }
-         return redirect('book')->with('status', 'Book Updated Successfully');
+         return redirect('book')->with('status', 'Books Updated Successfully');
     }
    public function bookDestroy($slug)
     {

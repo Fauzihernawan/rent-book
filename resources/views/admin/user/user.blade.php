@@ -14,7 +14,7 @@
             {{ session('status') }}
         </div>
 @endif
-    <table class="table">
+    <table class="table table-bordered">
         <thead>
             <tr>
                 <td>No. </td>

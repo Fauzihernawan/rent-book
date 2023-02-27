@@ -61,110 +61,6 @@
         .count{
             font-size: 25px;
         }
-
-        /* Toggle menu */
-        /* #menu-button {
-            width: 32px;
-            position: absolute;
-            overflow: hidden;
-
-        }
-        #menu-label{
-            position: relative;
-            display: block;
-            height:  20px;
-            cursor: pointer;        
-        }
-        #menu-checkbox{
-            display: none;
-        }
-        #checkbox, #menu-label:after, #menu-label:before {
-            position: absolute;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background-color: black;
-        }
-
-        #menu-label:after, #menu-label:before{
-            content: "";
-        }
-
-        #menu-label:before{
-            top: 0:           
-        }
-        #menu-label:after{
-            top: 8px;
-        }
-        #checkbox{
-            top: 16px;
-        }
-        #cehckbox:before{
-            content: "Menu";
-            position: absolute;
-            top: 5px;
-            right: 0;
-            left: 0;
-            color: black;
-            font-size: 10px;
-            font-weight: bold;
-            text-align: center;
-        }
-
-        #menu-checkbox:checked + #menu-label::before{
-            left: -39px;
-        }
-        #menu-checkbox:checked + #menu-label::after{
-            left: 39;
-        }
-        #menu-checkbox:checked + #menu-label #checkbox::before{
-
-        }
-        @keyframes moveUoThenDown {
-            0% {
-                top: 0;
-            }
-            50% {
-                top: -27px;
-            }
-            100% {
-                top : -14px
-            }
-        }
-        @keyframes shake {
-            0% {
-                transform: rotateZ(0);
-            }
-            25% {
-                transform: rotateZ(-10deg);
-            }
-            50%{
-                transform: rotateZ(0)
-            }
-            75%{
-                transform: rotateZ(10deg)
-            }
-            100%{
-                transform: rotateZ(0)
-            }
-        }
-        @keyframes shakedown {
-            0% {
-                transform: rotateZ(0);
-            }
-            80% {
-                transform: rotateZ(-10deg);
-            }
-            50%{
-                transform: rotateZ(0)
-            }
-            75%{
-                transform: rotateZ(10deg)
-            }
-            100%{
-                transform: rotateZ(0)
-            }
-        } */
     </style>
 <body>
     <div class="main d-flex flex-column justify-content-between">
@@ -186,23 +82,15 @@
             <a href="/dashboard" @if(request()->route()->uri == 'dashboard') class= 'active' @endif><i class="bi bi-house-door"></i> Dashboard</a>
             <a href="/users" @if(request()->route()->uri == 'users') class= 'active' @endif><i class="bi bi-person"></i> Users</a>
             <a href="/category" @if(request()->route()->uri == 'category') class= 'active' @endif><i class="bi bi-bookmarks"></i> Category</a>
-            <a href="/book" @if(request()->route()->uri == 'books') class= 'active' @endif><i class="bi bi-book-half"></i> Books</a>
+            <a href="/book" @if(request()->route()->uri == 'book') class= 'active' @endif><i class="bi bi-book-half"></i> Books</a>
             <a href="/rentlogs" @if(request()->route()->uri == 'rentlogs') class= 'active' @endif><i class="bi bi-cart-plus"></i> RentLogs</a>
             <a href="/logout" class="mb-2 bi bi-box-arrow-left"> Logout</a>
             @else
-            <a href="/#" @if(request()->route()->uri == 'profile') class= 'active' @endif><i class="bi bi-person"></i> Profile</a>
+            <a href="/profile" @if(request()->route()->uri == 'profile') class= 'active' @endif><i class="bi bi-person"></i> Profile</a>
+            <a href="/book-user" @if(request()->route()->uri == 'book-user') class= 'active' @endif><i class="bi bi-book-half"></i> Books</a>
             <a href="/logout" class=" bi bi-box-arrow-left"> Logout</a>
             @endif
         </div>
-        <!-- <div class="main-content">
-             <div id="menu-button">
-                position-absolute bottom-0
-                <input type="checkbox" id="menu-checkbox">
-                <label for="menu-checxbox" id="menu-label">
-                    <div id="checkbox"></div>
-                </label>
-             </div>
-        </div> -->
         <div class="col-lg-10 p-3 content">
             @yield('content')
         </div>

@@ -3,7 +3,7 @@
 @section('title', 'Books')
 
 @section('content')
-<h1>Ini halaman Books</h1>
+<h1>List Books</h1>
 <div class="my-4 d-flex justify-content-end">
     <a href="/book-add" class="btn btn-primary">Add Book</a>
 </div>
@@ -33,7 +33,7 @@
                 <td>{{$value->title}}</td>
                 <td>
                     @if($value->cover != '')
-                    <img src="{{asset('storage/cover/'.$value->cover)}}" alt="" width="75px" height="85 px">
+                    <img src="{{asset('storage/cover/'.$value->cover)}}" alt="" width="75px">
                     @else
                     <img src="{{asset('assets/img/notfound.jpg')}}" alt="" width="75px">
                     @endif

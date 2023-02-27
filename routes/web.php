@@ -28,7 +28,6 @@ Route::middleware('guest')->group(function(){
     });
 
 Route::middleware('auth')->group(function(){
-    Route::get('profile',[UserController::class, 'profile'])->middleware('only_client');
     Route::get('dashboard',[AdminController::class, 'index'])->middleware('only_admin');
     Route::get('category',[AdminController::class, 'categorys'])->middleware('only_admin');
     Route::get('category-add',[AdminController::class, 'categoryAdd'])->middleware('only_admin');
@@ -46,12 +45,16 @@ Route::middleware('auth')->group(function(){
     Route::get('users-banned',[AdminController::class, 'usersBanned'])->middleware('only_admin');
     // restore data
     Route::get('users-restore/{slug}',[AdminController::class, 'usersRestore'])->middleware('only_admin');
+
     Route::get('book',[AdminController::class, 'books'])->middleware('only_admin');
     Route::get('book-add',[AdminController::class, 'booksAdd'])->middleware('only_admin');
     Route::post('book-add',[AdminController::class, 'booksStore'])->middleware('only_admin');
     Route::get('book-edit/{slug}',[AdminController::class, 'bookEdit'])->middleware('only_admin');
     Route::put('book-edit/{slug}',[AdminController::class, 'bookUpdate'])->middleware('only_admin');
     Route::get('book-delete/{slug}',[AdminController::class, 'bookDestroy'])->middleware('only_admin');
+    // route book halaman users
+    Route::get('book-user',[UserController::class, 'book']);
+    Route::get('profile',[UserController::class, 'profile'])->middleware('only_client');
     Route::get('rentlogs',[AdminController::class, 'rentlogs'])->middleware('only_admin');
     Route::get('logout', [AuthController::class, 'logout']);
 });
