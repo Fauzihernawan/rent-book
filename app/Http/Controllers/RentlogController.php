@@ -32,6 +32,19 @@ class RentlogController extends Controller
             Session::flash('alert-class', 'alert-danger');
             return redirect('rentlogs-add');
         }
-        RentLogs::create($request->all());
+        else{
+            $count = Rentlogs::where('user_id', $request->user_id)->where('actual_return_date', null)->count();
+            if($count >= 3){
+                Session::flash('message', 'Cannot rent, user has a limit book!!');
+                Session::flash('alert-class', 'alert-danger');
+                return redirect('rentlogs-add');     
+            }
+            else{
+                RentLogs::create($request->all());
+                Session::flash('message', 'Rent book succes');
+                Session::flash('alert-class', 'alert-succces');
+                return redirect('rentlogs-add');     
+            }
+        }
     }
 }
