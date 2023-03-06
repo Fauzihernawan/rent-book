@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\RentlogController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
@@ -56,6 +57,8 @@ Route::middleware('auth')->group(function(){
     Route::get('book-user',[UserController::class, 'book']);
     Route::get('profile',[UserController::class, 'profile'])->middleware('only_client');
     Route::get('rentlogs',[AdminController::class, 'rentlogs'])->middleware('only_admin');
+    Route::get('rentlogs-add',[RentlogController::class, 'Add'])->middleware('only_admin');
+    Route::post('rentlogs-add', [RentlogController::class, 'Store'])->middleware('only_admin');
     Route::get('logout', [AuthController::class, 'logout']);
 });
 

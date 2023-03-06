@@ -161,7 +161,7 @@ class AdminController extends Controller
    
    public function rentlogs()
          {
-            return view('admin.rentlog');
+            return view('admin.rent.rentlog');
          }
     
     
