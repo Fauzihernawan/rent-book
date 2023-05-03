@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\Category;
 use App\Models\User;
+use App\Models\Rentlogs;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -161,7 +162,8 @@ class AdminController extends Controller
    
    public function rentlogs()
          {
-            return view('admin.rent.rentlog');
+            $rentlogs = Rentlogs::with(['user', 'book' ])->get();
+            return view('admin.rent.rentlog', ['rentlogs' => $rentlogs]);
          }
     
     

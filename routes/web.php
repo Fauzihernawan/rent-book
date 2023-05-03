@@ -59,6 +59,8 @@ Route::middleware('auth')->group(function(){
     Route::get('rentlogs',[AdminController::class, 'rentlogs'])->middleware('only_admin');
     Route::get('rentlogs-add',[RentlogController::class, 'Add'])->middleware('only_admin');
     Route::post('rentlogs-add', [RentlogController::class, 'Store'])->middleware('only_admin');
+    Route::get('returnlogs',[RentlogController::class, 'edit'])->middleware('only_admin');
+    Route::post('returnlogs', [RentlogController::class, 'update'])->middleware('only_admin');
     Route::get('logout', [AuthController::class, 'logout']);
 });
 

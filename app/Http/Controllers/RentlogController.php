@@ -41,10 +41,41 @@ class RentlogController extends Controller
             }
             else{
                 RentLogs::create($request->all());
+                $book = Book::findOrFail($request->book_id);
+                $book->status = 'not avaliable';
+                $book->save();
                 Session::flash('message', 'Rent book succes');
-                Session::flash('alert-class', 'alert-succces');
+                Session::flash('alert-class', 'alert-succcess');
                 return redirect('rentlogs-add');     
             }
+        }
+    }
+
+    public function edit()
+    {
+        $users = User::where('id', '!=', 1)->where('status', '!=', 'inactive')->get();
+        $books = Book::all();
+        return view ('admin.rent.returnlogs', ['users' => $users, 'books' => $books]);
+    }
+
+    public function update (Request $request)
+    {
+        $rent = Rentlogs::where('user_id', $request->user_id)->where('book_id', $request->book_id)
+        ->where('actual_return_date', null);
+
+        $rentData = $rent->first();
+        $rentCount = $rent->count();
+        if($rentCount == 1){
+            // return date masih nullll
+            $rentData->actual_return_date = Carbon::now()->toDateString();
+            $rentData->save();
+            Session::flash('message', 'Renturn succesefully');
+            Session::flash('alert-class', 'alert-succcess');
+            return redirect('returnlogs'); 
+        }
+        else{
+            // return date tidak nulll
+
         }
     }
 }
